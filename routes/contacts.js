@@ -10,8 +10,7 @@ router.get('/', contactsController.contacts_list);
 router.get('/add', contactsController.contacts_create_get);
 
 /* POST contacts add */
-router.post('/add', body('firstName').trim().notEmpty().withMessage('contact text can not be empty!'),
-    body('email').trim().not().isEmpty().withMessage('contact email address can not be empty!').isEmail().withMessage('Email must be a valid email address!'),
+router.post('/add', body('firstName').trim().notEmpty().withMessage('First name can not be empty!'),body('lastName').trim().notEmpty().withMessage('last name can not be empty!'),
      contactsController.contacts_create_post);
 
 /* GET a contact */
