@@ -65,15 +65,22 @@ exports.contacts_create_post = function(req, res, next) {
     res.render('contacts_edit', { title: 'Edit contact', contact: contact} );
   };
   
-  /* POST contacts edit */
-  exports.contacts_edit_post = function(req, res, next) {
-    //console.log(req.body);
-    if ((req.body.firstName.trim() === '') || (req.body.lastName.trim() === '')) {
+/* POST contacts edit */
+exports.contacts_edit_post = function(req, res, next) {
+    // Trim whitespace from form field values
+    const firstName = req.body.firstName.trim();
+    const lastName = req.body.lastName.trim();
+    const email = req.body.email.trim();
+    const notes = req.body.notes.trim();
+  
+    if (firstName === '' || lastName === '') {
       const contact = contactsRepo.findById(req.params.uuid);
       res.render('contacts_edit', {title: 'Edit contact', msg: 'First name and Last name can not be empty!', contact: contact});
     } else {
-      const updatedContact = new Contact(req.params.uuid, req.body.firstName, req.body.lastName, req.body.email, req.body.notes);
+      // Create a new contact object with trimmed values
+      const updatedContact = new Contact(req.params.uuid, firstName, lastName, email, notes);
       contactsRepo.update(updatedContact);
       res.redirect('/contacts');
     }
   };
+  
