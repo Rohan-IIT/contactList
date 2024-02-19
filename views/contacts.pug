@@ -1,7 +1,18 @@
 extends layout
 
 block content
-  a(href='/contacts/add') Add a contact
+  .card.border-0
+  .card-body
+    //- Header 
+    .form-header.blue.accent-1
+      h3.mt-2
+        i.fas.fa-sun.mr-3
+          | Contact Dashboard
+    .text-center.my-4
+      a(href='/contacts/add')
+        button.btn.btn-primary
+          |  Add contact
+  
   hr
   if contacts.length > 0
     table.table.table-striped
