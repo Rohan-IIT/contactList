@@ -9,6 +9,14 @@ a {
 
 .redtext {
   color: #cc0000;
+    background-color: #fae7e8;
+    border-color: #e45460;
+    padding: 10px;
+    border-left: 6px solid;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    list-style-type: none;
+    margin-top: 10px;
 }
 
 
