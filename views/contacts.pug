@@ -31,4 +31,6 @@ block content
             td= val.lastName
             td= val.email
             td
-              a.btn.btn-primary(href=`/contacts/${val.id}`, role='button') Action
+              a(href=`/contacts/${val.id}`)
+                button.btn.btn-secondary.m-0
+                  |  More details
