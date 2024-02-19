@@ -14,18 +14,27 @@ exports.contacts_list = function(req, res, next) {
     res.render('contacts_add', { title: 'Add contact'} );
   };
   
-  /* POST contacts add */
-  exports.contacts_create_post = function(req, res, next) {
-    //console.log(req.body);
+/* POST contacts add */
+exports.contacts_create_post = function(req, res, next) {
+    // Trim whitespace from form field values
+    const firstName = req.body.firstName.trim();
+    const lastName = req.body.lastName.trim();
+    const email = req.body.email.trim();
+    const notes = req.body.notes.trim();
+    
+    // Validate form input
     const result = validationResult(req);
+    
     if (!result.isEmpty()) {
       res.render('contacts_add', {title: 'Add contact', msg: result.array()});
     } else {
-        const newContact = new Contact('',  req.body.firstName, req.body.lastName, req.body.email, req.body.notes);
+      // Create a new contact object with trimmed values
+      const newContact = new Contact('', firstName, lastName, email, notes);
       contactsRepo.create(newContact);
       res.redirect('/contacts');
     }
   };
+  
   
   /* GET a contact */
   exports.contacts_detail = function(req, res, next) {
